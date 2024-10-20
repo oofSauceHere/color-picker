@@ -6,7 +6,8 @@ const rgbToHex = (r, g, b) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const colorDiv = document.getElementById("color");
     if(message.query == "color") {
-        const [red, blue, green, alpha] = message.color;
+        const {0:red, 1:green, 2:blue, 3:alpha} = message.color;
+        console.log(message.color);
 
         const hex = rgbToHex(red, green, blue); // alpha?
         const textColor = ((red*0.299 + green*0.587 + blue*0.114) > 186) ? "#000000" : "#ffffff"; // alpha?
